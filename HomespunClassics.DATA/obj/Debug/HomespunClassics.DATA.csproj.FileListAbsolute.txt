@@ -1,0 +1,5 @@
+C:\Users\Student\Documents\Visual Studio 2015\Projects\Personal\HomespunClassics\HomespunClassics.DATA\bin\Debug\HomespunClassics.DATA.dll
+C:\Users\Student\Documents\Visual Studio 2015\Projects\Personal\HomespunClassics\HomespunClassics.DATA\bin\Debug\HomespunClassics.DATA.pdb
+C:\Users\Student\Documents\Visual Studio 2015\Projects\Personal\HomespunClassics\HomespunClassics.DATA\obj\Debug\HomespunClassics.DATA.csprojResolveAssemblyReference.cache
+C:\Users\Student\Documents\Visual Studio 2015\Projects\Personal\HomespunClassics\HomespunClassics.DATA\obj\Debug\HomespunClassics.DATA.dll
+C:\Users\Student\Documents\Visual Studio 2015\Projects\Personal\HomespunClassics\HomespunClassics.DATA\obj\Debug\HomespunClassics.DATA.pdb

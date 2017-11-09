@@ -1,0 +1,195 @@
+﻿
+.button {
+    cursor: pointer;
+}
+
+.notification-counter {
+    position: absolute;
+    top: 3px;
+    right: 3%;
+    background-color: rgba(212,19,13,1);
+    color: white;
+    border-radius: 10px;
+    padding: 3px 3px;
+    font: verdana;
+    display: none;
+}
+
+a:hover {
+    text-decoration: none;
+}
+
+.get {
+    background: #3A5C83;
+    border: 0 none;
+    border-radius: 10px;
+    color: #FFFFFF;
+    font-size: 16px;
+    margin-top: 23px;
+}
+
+nav.navbar-default.navbar-fixed-top ul li a {
+    font-weight: bold;
+    color: #fff;
+    border: 5px solid rgba(0,0,0,0);
+    padding: 10px;
+    text-decoration: none;
+    display: inline-block;
+}
+
+nav ul.dropdown-menu {
+    margin: 0;
+    padding: 0;
+}
+
+#topNav {
+    position: fixed;
+}
+
+#minilogo{
+    max-width:100%;
+    
+}
+.tagline-lower {
+    padding-top: 10px;
+}
+
+div .card {
+    padding: 10px;
+}
+
+div .col-md-4 {
+    padding: 15px;
+}
+
+div .col-lg-6 img {
+    padding-bottom: 10%;
+}
+
+body {
+    background-image: url('../Image/wooden-planks-2503422_1920.jpg');
+    background-size: 100%;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+}
+
+.img-fluid {
+    display: inline-block;
+}
+
+.navbar-brand {
+    margin-right: 0;
+}
+
+.navbar-nav {
+    margin-left: auto;
+    text-align: center;
+}
+
+#nav {
+    max-width: 100%;
+}
+
+#outernav2, #innernav {
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
+    width: 100%;
+}
+
+#outernav {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 100;
+}
+
+#res1, #res2 {
+    border-radius: 10px;
+}
+
+#lipic {
+    width: 100%;
+}
+
+@media (max-width:460px) {
+    .navbar-brand {
+        width: 75%;
+    }
+}
+
+@media (max-width:460px) {
+    #minilogo {
+        width: 100%;
+    }
+}
+
+.typed-cursor {
+    opacity: 1;
+    animation: typedjsBlink 0.7s infinite;
+    -webkit-animation: typedjsBlink 0.7s infinite;
+    animation: typedjsBlink 0.7s infinite;
+}
+
+
+@media (max-width: 375px) {
+    body {
+        background-color: dimgrey;
+        background-image: none;
+    }
+
+    h1, .typed-cursor {
+        text-wrap: normal;
+        font-size: 2rem;
+    }
+}
+
+.res1 {
+    padding-left: 3em !important;
+    padding-right: 3em !important;
+}
+
+#con1 {
+    padding-left: 1.5%;
+    padding-right: 1.4%;
+}
+
+#innernav .navbar-nav {
+    margin: auto;
+}
+
+#innernav {
+    background-color: rgba(148, 192, 223, .95);
+}
+
+.mainmenu ul li a {
+    color: #696763;
+    font-size: 17px;
+    font-weight: bold;
+    padding: 0;
+    padding-bottom: 10px;
+}
+#conSub{
+    background-color:rgb(148, 193, 223);
+    border-color:rgb(148, 193, 223);
+    color:white;
+}
+.field-validation-error {
+    color: #b94a48;
+}
+
+.field-validation-valid {
+    display: none;
+}
+
+input.input-validation-error {
+    border: 1px solid #b94a48;
+}
+
+input[type="checkbox"].input-validation-error {
+    border: 0 none;
+}
+
+.validation-summary-errors {
+    color: #b94a48;
+}

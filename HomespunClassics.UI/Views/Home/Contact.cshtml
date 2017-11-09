@@ -1,0 +1,54 @@
+﻿@model uStoreMVC.Models.ContactViewModel
+@{
+    ViewBag.Title = "Contact";
+}
+<div class="container">
+    <div class="bg-faded p-4 my-4">
+        <div class="bg-faded p-4 my-4">
+            <hr class="divider">
+            <h2 class="text-center text-lg text-uppercase my-0">
+                Contact
+                <strong>Homespun Classics</strong>
+            </h2>
+            <hr class="divider">
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="contact-form">
+                        <div class="status alert alert-success" style="display: none"></div>
+                        @*                    <form id="main-contact-form" class="contact-form row" name="contact-form" method="get" action="#" onsubmit="validateForm()">*@
+                        @using (Html.BeginForm())
+                        {
+                            @Html.AntiForgeryToken()
+                            <div class="row" id="con1">
+                                <div class="form-group col-md-6">
+                                    @Html.TextBoxFor(x => x.Name, new { @class = "form-control", @placeholder = "Name" })
+                                    @Html.ValidationMessageFor(x => x.Name)
+                                </div>
+                                <div class="form-group col-md-6">
+                                    @Html.TextBoxFor(x => x.Email, new { @class = "form-control", @placeholder = "Email" })
+                                    @Html.ValidationMessageFor(x => x.Email)
+
+                                </div>
+                            </div>
+                            <div class="form-group col-md-12">
+                                @Html.TextBoxFor(x => x.Subject, new { @class = "form-control", @placeholder = "Subject" })
+                                @Html.ValidationMessageFor(x => x.Subject)
+
+                            </div>
+                            <div class="form-group col-md-12">
+                                @Html.TextAreaFor(x => x.Message, new { @class = "form-control", @placeholder = "Message" })
+                                @Html.ValidationMessageFor(x => x.Message)
+
+                            </div>
+                            <div class="form-group col-md-12">
+                                <input type="submit" name="submit" class="btn pull-right" id="conSub" value="Submit">
+
+                            </div>
+                        }
+                        @*</form>*@
+                    </div>
+                </div>
+            </div>
+    </div>
+</div>
+</div>
