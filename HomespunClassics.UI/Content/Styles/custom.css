@@ -156,10 +156,13 @@ body {
 
 #innernav .navbar-nav {
     margin: auto;
+    margin-left:0;
 }
 
 #innernav {
     background-color: rgba(148, 192, 223, .95);
+    font-size: .5em;
+    font-weight: 400;
 }
 
 .mainmenu ul li a {

@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 
-namespace HomespunClassics.Models
+namespace HomespunClassics.UI.Models
 {
     public class ContactViewModel
     {

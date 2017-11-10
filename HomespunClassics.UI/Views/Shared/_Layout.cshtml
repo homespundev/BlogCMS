@@ -20,117 +20,165 @@
 </head>
 <body>
     <!-- Navigation -->
-    <nav id="outernav2" class="navbar navbar-left navbar-expand-lg navbar-expand-md navbar-expand-sm navbar-light bg-faded py-lg-4">
+    <div id="outernav">
+        <nav id="innernav" class="navbar navbar-left navbar-expand-lg navbar-expand-md navbar-expand-sm navbar-light py-lg-4">
 
-        <div class="container mainmenu" id="nav">
-            <a class="navbar-brand" href="~/Home/Index"><img id="minilogo" src="~/Content/Image/HCLogo250x99.png"/></a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarResponsive">
-                <ul class="navbar-nav">
-                    @*<li class="nav-item active px-lg-4">
-                        <a class="nav-link text-uppercase text-expanded" href="@Url.Action("Index", "Home")">
-                            Home
-                            <span class="sr-only">(current)</span>
-                        </a>
-                    </li>*@
-                    <li class="nav-item px-lg-4">
-                        <a class="nav-link text-uppercase text-expanded" href="@Url.Action("About", "Home")">About</a>
-                    </li>
-                    @*<li class="nav-item px-lg-4 dropdown">
-                        <a class="nav-link text-uppercase text-expanded dropdown-toggle" data-toggle="dropdown"
-                           target="_blank" aria-haspopup="true" aria-expanded="false" href="@Url.Action("Blog", "Home")">
-                            Blog
-                            <span class="caret"></span>
-                        </a>
-                        <ul class="dropdown-menu bg-faded">
-                            <li>
-                                <a href="#" class="nav-link text-uppercase text-expanded">
-                                    Works in Progress
-                                </a>
+            <div class="container" id="nav">
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive2" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarResponsive2">
+                    
+                        <ul class="navbar-nav navbar-left">
+                            @if (User.IsInRole("Admin"))
+                            {<li class="nav-item px-lg-4">
+                                <a class="nav-link text-uppercase text-expanded" href="#projects">Independent Projects</a>
                             </li>
-                            <li>
-                                <a href="#" class="nav-link text-uppercase text-expanded">
-                                    Recent Projects
-                                </a>
+                            <li class="nav-item px-lg-4">
+                                <a class="nav-link text-uppercase text-expanded" href="#skills">Skills</a>
                             </li>
-                            <li>
-                                <a href="#" class="nav-link text-uppercase text-expanded">
-                                    Product Reviews
-                                </a>
+                            <li class="nav-item px-lg-4">
+                                <a class="nav-link text-uppercase text-expanded" href="#education">Training & Education</a>
                             </li>
-                            <li>
-                                <a href="#" class="nav-link text-uppercase text-expanded">
-                                    Tutorials
+
+                            <li class="nav-item px-lg-4">
+                                <a class="nav-link text-uppercase text-expanded" href="#work">Experience</a>
+                            </li>
+                            <li class="nav-item px-lg-4">
+                                <a class="nav-link text-uppercase text-expanded" href="#vol">Volunteer</a>
+                            </li>}
+                        
+                        </ul>
+                    @Html.Partial("_LoginPartial")
+                </div>
+            </div>
+        </nav>
+        <nav id="outernav2" class="navbar navbar-left navbar-expand-lg navbar-expand-md navbar-expand-sm navbar-light bg-faded py-lg-4">
+
+            <div class="container mainmenu" id="nav">
+                <a class="navbar-brand" href="~/Home/Index"><img id="minilogo" src="~/Content/Image/HCLogo250x99.png" /></a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarResponsive">
+                    <ul class="navbar-nav">
+                        @*<li class="nav-item active px-lg-4">
+                                <a class="nav-link text-uppercase text-expanded" href="@Url.Action("Index", "Home")">
+                                    Home
+                                    <span class="sr-only">(current)</span>
                                 </a>
                             </li>*@
-                        @*</ul>
-                    </li>*@
-                    <li class="nav-item px-lg-4">
-                        <a class="nav-link text-uppercase text-expanded" href="@Url.Action("Contact", "Home")">Contact</a>
-                    </li>
-                    @if (ViewBag.Title == "Home")
-                    {
-                        <li id="cart-button" class="nav-item px-lg-4">
-                            <a class="nav-link text-uppercase text-expanded" href="#">
-                                <i class="fa fa-shopping-cart"></i> Cart
-                            </a>
-                            <span id="cart-notification" class="notification-counter"></span>
+                        <li class="nav-item px-lg-4">
+                            <a class="nav-link text-uppercase text-expanded" href="@Url.Action("About", "Home")">About</a>
                         </li>
-                    }
-                </ul>
+                        @*<li class="nav-item px-lg-4 dropdown">
+                            <a class="nav-link text-uppercase text-expanded dropdown-toggle" data-toggle="dropdown"
+                               target="_blank" aria-haspopup="true" aria-expanded="false" href="@Url.Action("Blog", "Home")">
+                                Blog
+                                <span class="caret"></span>
+                            </a>
+                            <ul class="dropdown-menu bg-faded">
+                                <li>
+                                    <a href="#" class="nav-link text-uppercase text-expanded">
+                                        Works in Progress
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#" class="nav-link text-uppercase text-expanded">
+                                        Recent Projects
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#" class="nav-link text-uppercase text-expanded">
+                                        Product Reviews
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#" class="nav-link text-uppercase text-expanded">
+                                        Tutorials
+                                    </a>
+                                </li>*@
+                        @*</ul>
+                            </li>*@
+                        <li class="nav-item px-lg-4">
+                            <a class="nav-link text-uppercase text-expanded" href="@Url.Action("Contact", "Home")">Contact</a>
+                        </li>
+                        @if (ViewBag.Title == "Home")
+                        {
+                            <li id="cart-button" class="nav-item px-lg-4">
+                                <a class="nav-link text-uppercase text-expanded" href="#">
+                                    <i class="fa fa-shopping-cart"></i> Cart
+                                </a>
+                                <span id="cart-notification" class="notification-counter"></span>
+                            </li>
+                        }
+                    </ul>
+                </div>
             </div>
-        </div>
-    </nav>
+        </nav>
 
-    @RenderBody()
 
-    <footer class="bg-faded text-center py-5">
-        <div class="container">
-            <p class="m-0">Copyright &copy; Homespun Classics @DateTime.Now.Year</p>
-        </div>
-    </footer>
-
-    <div id="dialog" title="Shopping Cart">
-        <p id="cart-contents">
-            Your cart is currently empty.
-        </p>
     </div>
+    <div class="container body-content">
 
-    <!-- Bootstrap core JavaScript -->
-    <script src="~/Content/Scripts/jquery.min.js"></script>
-    <script src="~/Content/Scripts/popper.min.js"></script>
-    <script src="~/Content/Scripts/bootstrap.min.js"></script>
-    <script src="~/Content/Scripts/cart.js"></script>
-    <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
-    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-    <script src="~/Content/Scripts/CartjQuery.js"></script>
-    @* jQuery Validation *@
-    @* This was dded to enable the client side form validation that
-        is added by the Model Data Annotations *@
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.17.0/jquery.validate.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validation-unobtrusive/3.2.6/jquery.validate.unobtrusive.min.js"></script>
-    <!--<script>
-    $( function() {
-      $( "#dialog" ).dialog({
-        autoOpen: false,//disables popup from opening on page load
-        show: {//options used when dialog box is opened
-          effect: "blind",
-          duration: 1000
-        },
-        hide: {//options used when box is closed
-          effect: "puff",
-          duration: 1000
-        }
-      });
-        //other effects: blind, bounce, clip, drop, fold, puff, pulsate
-        //scale, shake, slide
-      $( "#cart-button" ).on( "click", function() {
-        $( "#dialog" ).dialog( "open" );
-      });
-    } );
-      </script>-->
-    @RenderSection("Scripts", false)
+
+        @RenderBody()
+    </div>
+        <footer class="bg-faded text-center py-5">
+            <div class="container">
+                <p class="m-0">Copyright &copy; Homespun Classics @DateTime.Now.Year</p>
+            </div>
+        </footer>
+
+        <div id="dialog" title="Shopping Cart">
+            <p id="cart-contents">
+                Your cart is currently empty.
+            </p>
+        </div>
+
+        <!-- Bootstrap core JavaScript -->
+        <script src="~/Content/Scripts/jquery.min.js"></script>
+        <script src="~/Content/Scripts/popper.min.js"></script>
+        <script src="~/Content/Scripts/bootstrap.min.js"></script>
+        <script src="~/Content/Scripts/cart.js"></script>
+        <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+        <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+        <script src="~/Content/Scripts/CartjQuery.js"></script>
+        @* jQuery Validation *@
+        @* This was dded to enable the client side form validation that
+            is added by the Model Data Annotations *@
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.17.0/jquery.validate.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validation-unobtrusive/3.2.6/jquery.validate.unobtrusive.min.js"></script>
+        <!--<script>
+        $( function() {
+          $( "#dialog" ).dialog({
+            autoOpen: false,//disables popup from opening on page load
+            show: {//options used when dialog box is opened
+              effect: "blind",
+              duration: 1000
+            },
+            hide: {//options used when box is closed
+              effect: "puff",
+              duration: 1000
+            }
+          });
+            //other effects: blind, bounce, clip, drop, fold, puff, pulsate
+            //scale, shake, slide
+          $( "#cart-button" ).on( "click", function() {
+            $( "#dialog" ).dialog( "open" );
+          });
+        } );
+          </script>-->
+        <script>
+            $(document).ready(function () {
+                $('.body-content').css('margin-top', $('#outernav').height() + 'px');
+            });
+
+            $(window).resize(function () {
+                $('.body-content').css('margin-top', $('#outernav').height() + 'px');
+            });
+        </script>
+
+        @RenderSection("Scripts", false)
 </body>
 </html>
