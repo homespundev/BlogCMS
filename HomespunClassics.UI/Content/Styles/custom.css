@@ -72,8 +72,12 @@ body {
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
+    display:flex;
+    flex-direction:column;
 }
-
+.body-content{
+    flex: 1 0 auto;
+}
 .img-fluid {
     display: inline-block;
 }
@@ -159,11 +163,7 @@ body {
     margin-left:0;
 }
 
-#innernav {
-    background-color: rgba(148, 192, 223, .95);
-    font-size: .5em;
-    font-weight: 400;
-}
+
 
 .mainmenu ul li a {
     color: #696763;
@@ -195,4 +195,17 @@ input[type="checkbox"].input-validation-error {
 
 .validation-summary-errors {
     color: #b94a48;
+}
+#innernav {
+    background-color: rgba(148, 192, 223, .95);
+    font-size: .5em;
+    font-weight: 400;
+}
+footer{
+    position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-color: #efefef;
+  text-align: center;
 }
