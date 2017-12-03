@@ -15,9 +15,14 @@ namespace HomespunClassics.UI.Controllers
     {
         private HomespunClassicsDbEntities db = new HomespunClassicsDbEntities();
         // GET: Posts
+        public ActionResult Index()
+        {
+            return RedirectToAction("Archive");
+        }
+
         public ActionResult Archive()
         {
-            var posts = db.Posts.Include(p => p.AspNetUser).Include(p => p.Category).Where(p => p.Published == true);
+            var posts = db.Posts.Include(p => p.AspNetUser).Include(p => p.Category)/*.Where(p => p.Published == true)*/;
 
             
            

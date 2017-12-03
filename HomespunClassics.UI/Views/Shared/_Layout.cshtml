@@ -72,7 +72,7 @@
                             <ul class="dropdown-menu bg-faded">
                                 <li>
                                     <a href="~/Posts/Details/@ViewBag.MostRecentPost" class="nav-link text-uppercase">
-                                        Most Recent
+                                        Most Recent @ViewBag.MostRecentPost
                                     </a>
                                 </li>
                                 <li>
@@ -139,12 +139,12 @@
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     <script src="~/Content/Scripts/CartjQuery.js"></script>
     <script src="~/Content/Scripts/docs.js"></script>
+    <script src="https://cdn.ckeditor.com/4.7.3/standard/ckeditor.js"></script>
     @* jQuery Validation *@
     @* This was dded to enable the client side form validation that
         is added by the Model Data Annotations *@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.17.0/jquery.validate.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validation-unobtrusive/3.2.6/jquery.validate.unobtrusive.min.js"></script>
-    <script src="https://cdn.ckeditor.com/4.7.3/standard/ckeditor.js"></script>
     <script type="text/javascript"
             async defer
             src="//assets.pinterest.com/js/pinit.js"></script>
@@ -165,14 +165,13 @@
             $('.body-content').css('margin-top', $('#outernav').height() + 'px');
         });
     </script>
-    @* <script src="~/Content/Scripts/editor.js"></script>*@
-    @*<script type="text/javascript">
-            $(document).ready(function () {
-                $(".text-area").Editor({ 'source': false,'print': false, 'splchars': false, 'togglescreen': false});
-            });
-        </script>*@
     <script>
-        CKEDITOR.replace(".editor")
+			CKEDITOR.replace( 'PostBody' );
+    </script>
+    <script>
+  $( function() {
+    $( ".datepicker" ).datepicker();
+  } );
     </script>
     @RenderSection("Scripts", false)
 </body>

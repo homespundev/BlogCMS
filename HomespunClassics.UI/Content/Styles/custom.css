@@ -265,3 +265,6 @@ html {
 #statusbar{
     display:none;
 }
+.btn a{
+    color:black;
+}
