@@ -1,0 +1,33 @@
+﻿@model HomespunClassics.DATA.Category
+
+@{
+    ViewBag.Title = Model.CategoryName;
+}
+
+<div class="bg-faded p-4 my-4">
+    <hr class="divider">
+
+    <h2 class="text-center text-lg text-uppercase my-0">
+
+       @Model.CategoryID <strong>Details</strong>
+    </h2>
+    <hr class="divider">
+    <div>
+        <h4>Category</h4>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.CategoryName)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.CategoryName)
+            </dd>
+
+        </dl>
+    </div>
+    <p>
+        @Html.ActionLink("Edit", "Edit", new { id = Model.CategoryID }) |
+        @Html.ActionLink("Back to List", "Index")
+    </p>
+    </div>

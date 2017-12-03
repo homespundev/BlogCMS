@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="1cf98cb4adfb4b6cbde857d85f64fb39" Name="Diagram1">
+        <EntityTypeShape EntityType="HomespunClassicsDbModel.AspNetUser" Width="1.5" PointX="1" PointY="1.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="HomespunClassicsDbModel.Category" Width="1.5" PointX="3.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="HomespunClassicsDbModel.Comment" Width="1.5" PointX="5.875" PointY="2.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="HomespunClassicsDbModel.Image" Width="1.5" PointX="5.125" PointY="6.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="HomespunClassicsDbModel.Post" Width="1.5" PointX="8.25" PointY="1.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="HomespunClassicsDbModel.Tag" Width="1.5" PointX="11.125" PointY="4" IsExpanded="true" />
+        <AssociationConnector Association="HomespunClassicsDbModel.FK_Comments_AspNetUsers" ManuallyRouted="false" />
+        <AssociationConnector Association="HomespunClassicsDbModel.FK_Posts_AspNetUsers" ManuallyRouted="false" />
+        <AssociationConnector Association="HomespunClassicsDbModel.FK_dbo_Posts_dbo_Categories_CategoryID" ManuallyRouted="false" />
+        <AssociationConnector Association="HomespunClassicsDbModel.FK_dbo_Comments_dbo_Posts_PostID" ManuallyRouted="false" />
+        <AssociationConnector Association="HomespunClassicsDbModel.ImagePosts" />
+        <AssociationConnector Association="HomespunClassicsDbModel.TagPosts" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

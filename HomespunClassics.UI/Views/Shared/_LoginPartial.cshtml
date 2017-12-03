@@ -1,12 +1,37 @@
 ﻿@using Microsoft.AspNet.Identity
-@if (Request.IsAuthenticated) {
-    using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" })) {
+@if (Request.IsAuthenticated)
+{
+    using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
+    {
         @Html.AntiForgeryToken()
 
         <ul class="nav navbar-nav navbar-right">
             <li class="nav-item px-lg-4">
-                @Html.ActionLink("Hello " + User.Identity.GetUserName() + "!", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage", @class= "nav-link text-uppercase text-expanded" })
+                @Html.ActionLink("Hello " + User.Identity.Name + "!", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage", @class = "nav-link text-uppercase text-expanded" })
             </li>
+            <li class="nav-item px-lg-4 dropdown">
+                <a class="nav-link text-uppercase text-expanded dropdown-toggle" data-toggle="dropdown"
+                   aria-haspopup="true" aria-expanded="false">
+                    Manage
+                    <span class="caret"></span>
+                </a>
+                <ul class="dropdown-menu bg-faded">
+                    <li class="nav-item px-lg-4">
+                        <a class="nav-link text-uppercase text-expanded" href="~/UsersAdmin">Users</a>
+                    </li>
+                    <li class="nav-item px-lg-4">
+                        <a class="nav-link text-uppercase text-expanded" href="~/RolesAdmin">Roles</a>
+                    </li>
+                    <li class="nav-item px-lg-4">
+                        <a class="nav-link text-uppercase text-expanded" href="~/Posts">Posts</a>
+                    </li>
+                    <li class="nav-item px-lg-4">
+                        <a class="nav-link text-uppercase text-expanded" href="~/Tags">Tags</a>
+                    </li>
+                    <li class="nav-item px-lg-4">
+                        <a class="nav-link text-uppercase text-expanded" href="~/Categories">Categories</a>
+                    </li>
+                </ul>
             <li class="nav-item px-lg-4"><a class="nav-link text-uppercase text-expanded" href="javascript:document.getElementById('logoutForm').submit()">Log off</a></li>
         </ul>
     }

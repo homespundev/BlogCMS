@@ -6,13 +6,17 @@ using System.Net.Mail;
 using System.Web;
 using System.Web.Mvc;
 using HomespunClassics.UI.Models;
+using HomespunClassics.DATA;
 
 namespace HomespunClassics.UI.Controllers
 {
     public class HomeController : Controller
     {
+        private HomespunClassicsDbEntities db = new HomespunClassicsDbEntities();
         public ActionResult Index()
         {
+            var posts = db.Posts;
+            ViewBag.MostRecentPost = (from p in posts where p.DateCreated <= DateTime.Now && p.Published orderby p.DateCreated descending select p.PostId).First();
             return View();
         }
 

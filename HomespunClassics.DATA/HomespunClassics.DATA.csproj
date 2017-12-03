@@ -45,6 +45,11 @@
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Web.Mvc">
+      <HintPath>..\..\..\..\..\..\..\Desktop\System.Web.Mvc.dll</HintPath>
+    </Reference>
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -53,11 +58,74 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AspNetUser.cs">
+      <DependentUpon>HomespunClassicsDbModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Category.cs">
+      <DependentUpon>HomespunClassicsDbModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Comment.cs">
+      <DependentUpon>HomespunClassicsDbModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="HomespunClassicsDbModel.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>HomespunClassicsDbModel.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="HomespunClassicsDbModel.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>HomespunClassicsDbModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="HomespunClassicsDbModel.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>HomespunClassicsDbModel.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Image.cs">
+      <DependentUpon>HomespunClassicsDbModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Metadata\CategoryMetadata.cs" />
+    <Compile Include="Metadata\CommentMetadata.cs" />
+    <Compile Include="Metadata\ImageMetadata.cs" />
+    <Compile Include="Metadata\PostMetadata.cs" />
+    <Compile Include="Metadata\TagMetadata.cs" />
+    <Compile Include="Metadata\UserMetadata.cs" />
+    <Compile Include="Post.cs">
+      <DependentUpon>HomespunClassicsDbModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Tag.cs">
+      <DependentUpon>HomespunClassicsDbModel.tt</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
+    <EntityDeploy Include="HomespunClassicsDbModel.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>HomespunClassicsDbModel.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="HomespunClassicsDbModel.edmx.diagram">
+      <DependentUpon>HomespunClassicsDbModel.edmx</DependentUpon>
+    </None>
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="HomespunClassicsDbModel.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>HomespunClassicsDbModel.edmx</DependentUpon>
+      <LastGenOutput>HomespunClassicsDbModel.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="HomespunClassicsDbModel.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>HomespunClassicsDbModel.edmx</DependentUpon>
+      <LastGenOutput>HomespunClassicsDbModel.cs</LastGenOutput>
+    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

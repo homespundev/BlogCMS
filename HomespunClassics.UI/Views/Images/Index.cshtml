@@ -1,0 +1,45 @@
+﻿@model IEnumerable<HomespunClassics.DATA.Image>
+
+@{
+    ViewBag.Title = "Gallery";
+}
+
+<div class="bg-faded p-4 my-4">
+    <hr class="divider">
+    <h2 class="text-center text-lg text-uppercase my-0">
+        <strong>@ViewBag.Title</strong>
+    </h2>
+    <hr class="divider">
+    <p>
+        @Html.ActionLink("Create New", "Create")
+    </p>
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.ImageDescription)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ImageFileName)
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ImageDescription)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ImageFileName)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.ImageID }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.ImageID }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.ImageID })
+                </td>
+            </tr>
+        }
+
+    </table>
+</div>

@@ -1,0 +1,62 @@
+﻿@model IEnumerable<HomespunClassics.DATA.Post>
+
+@{
+    ViewBag.Title = "Index";
+    bool showPrev = ViewBag.ShowPrev ?? false;
+    bool showNext = ViewBag.ShowNext ?? false;
+}
+<div class="bg-faded p-4 my-4">
+    <hr class="divider">
+    <h2 class="text-center text-lg text-uppercase my-0">
+        Blog
+        <strong>Archive</strong>
+    </h2>
+    <hr class="divider">
+    <p>
+        @Html.ActionLink("Create New", "Create")
+    </p>
+    <table class="table">
+        <tr>
+            @if (User.IsInRole("Admin"))
+            {
+            <th></th> }
+            <th>
+                @Html.DisplayNameFor(model => model.PostTitle)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PostDescription)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DateCreated)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Category.CategoryName)
+            </th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                @if (User.IsInRole("Admin"))
+                {
+                <td>
+                    <a href="@Url.Action("Edit/" + item.PostId)" class="fa fa-pencil-square-o"></a> |
+                    <a href="@Url.Action("Delete/" + item.PostId)" class="fa fa-trash"></a>
+                </td> }
+                <td>
+                    @Html.ActionLink(item.PostTitle, "Details", new { id = item.PostId})
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PostDescription)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DateCreated)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Category.CategoryName)<!--TODO:Make this a link to posts with that category-->
+                </td>
+            </tr>
+        }
+
+    </table>
+    </div>

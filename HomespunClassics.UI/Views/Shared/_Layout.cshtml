@@ -11,12 +11,17 @@
     <!-- Custom fonts for this template -->
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css">
     <link href="https://fonts.googleapis.com/css?family=Josefin+Slab:100,300,400,600,700,100italic,300italic,400italic,600italic,700italic" rel="stylesheet" type="text/css">
+
+    <link href="~/Content/Fonts/FontAwesome.otf" rel="stylesheet" />
     <!-- Custom styles for this template -->
     <link href="~/Content/Styles/business-casual.css" rel="stylesheet">
-    <link href="~/Content/Styles/bootstrap.css" rel="stylesheet" />
+    <link href="~/Content/Styles/bootstrap-grid.min.css" rel="stylesheet" />
+    <link href="~/Content/Styles/bootstrap-reboot.min.css" rel="stylesheet" />
+    <link href="~/Content/Styles/bootstrap-social.css" rel="stylesheet" />
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
     <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
     <link href="~/Content/Styles/custom.css" rel="stylesheet" />
+
 </head>
 <body>
     <!-- Navigation -->
@@ -28,27 +33,14 @@
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse" id="navbarResponsive2">
-                    
-                        <ul class="navbar-nav navbar-left">
-                            @if (User.IsInRole("Admin"))
-                            {<li class="nav-item px-lg-4">
-                                <a class="nav-link text-uppercase text-expanded" href="#projects">Independent Projects</a>
-                            </li>
-                            <li class="nav-item px-lg-4">
-                                <a class="nav-link text-uppercase text-expanded" href="#skills">Skills</a>
-                            </li>
-                            <li class="nav-item px-lg-4">
-                                <a class="nav-link text-uppercase text-expanded" href="#education">Training & Education</a>
-                            </li>
 
-                            <li class="nav-item px-lg-4">
-                                <a class="nav-link text-uppercase text-expanded" href="#work">Experience</a>
-                            </li>
-                            <li class="nav-item px-lg-4">
-                                <a class="nav-link text-uppercase text-expanded" href="#vol">Volunteer</a>
-                            </li>}
-                        
-                        </ul>
+                    <ul class="navbar-nav navbar-left">
+                        @if (User.IsInRole("Admin"))
+                        {
+
+                        }
+
+                    </ul>
                     @Html.Partial("_LoginPartial")
                 </div>
             </div>
@@ -71,35 +63,35 @@
                         <li class="nav-item px-lg-4">
                             <a class="nav-link text-uppercase text-expanded" href="@Url.Action("About", "Home")">About</a>
                         </li>
-                        @*<li class="nav-item px-lg-4 dropdown">
+                        <li class="nav-item px-lg-4 dropdown">
                             <a class="nav-link text-uppercase text-expanded dropdown-toggle" data-toggle="dropdown"
-                               target="_blank" aria-haspopup="true" aria-expanded="false" href="@Url.Action("Blog", "Home")">
+                               target="_blank" aria-haspopup="true" aria-expanded="false" href="@Url.Action("Archive", "Posts")">
                                 Blog
                                 <span class="caret"></span>
                             </a>
                             <ul class="dropdown-menu bg-faded">
                                 <li>
-                                    <a href="#" class="nav-link text-uppercase text-expanded">
-                                        Works in Progress
+                                    <a href="~/Posts/Details/@ViewBag.MostRecentPost" class="nav-link text-uppercase">
+                                        Most Recent
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="#" class="nav-link text-uppercase text-expanded">
-                                        Recent Projects
+                                    <a href="~/Posts/Archive" class="nav-link text-uppercase text-expanded">
+                                        Archive
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="#" class="nav-link text-uppercase text-expanded">
-                                        Product Reviews
+                                    <a href="~/Categories/Index" class="nav-link text-uppercase text-expanded">
+                                        Categories
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="#" class="nav-link text-uppercase text-expanded">
-                                        Tutorials
+                                    <a href="~/Tags/Index" class="nav-link text-uppercase text-expanded">
+                                        Tags
                                     </a>
-                                </li>*@
-                        @*</ul>
-                            </li>*@
+                                </li>
+                            </ul>
+                        </li>
                         <li class="nav-item px-lg-4">
                             <a class="nav-link text-uppercase text-expanded" href="@Url.Action("Contact", "Home")">Contact</a>
                         </li>
@@ -124,61 +116,64 @@
 
         @RenderBody()
     </div>
-        <footer class="bg-faded text-center">
-            <div class="container">
-                <p class="m-0">Copyright &copy; Homespun Classics @DateTime.Now.Year</p>
-            </div>
-        </footer>
-
-        <div id="dialog" title="Shopping Cart">
-            <p id="cart-contents">
-                Your cart is currently empty.
-            </p>
+    <footer class="bg-faded text-center">
+        <div class="container">
+            <p class="m-0">Copyright &copy; Homespun Classics @DateTime.Now.Year</p>
+            @ViewBag.MostRecentPost
         </div>
+    </footer>
 
-        <!-- Bootstrap core JavaScript -->
-        <script src="~/Content/Scripts/jquery.min.js"></script>
-        <script src="~/Content/Scripts/popper.min.js"></script>
-        <script src="~/Content/Scripts/bootstrap.min.js"></script>
-        <script src="~/Content/Scripts/cart.js"></script>
-        <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
-        <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-        <script src="~/Content/Scripts/CartjQuery.js"></script>
-        @* jQuery Validation *@
-        @* This was dded to enable the client side form validation that
-            is added by the Model Data Annotations *@
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.17.0/jquery.validate.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validation-unobtrusive/3.2.6/jquery.validate.unobtrusive.min.js"></script>
-        <!--<script>
-        $( function() {
-          $( "#dialog" ).dialog({
-            autoOpen: false,//disables popup from opening on page load
-            show: {//options used when dialog box is opened
-              effect: "blind",
-              duration: 1000
-            },
-            hide: {//options used when box is closed
-              effect: "puff",
-              duration: 1000
-            }
-          });
-            //other effects: blind, bounce, clip, drop, fold, puff, pulsate
-            //scale, shake, slide
-          $( "#cart-button" ).on( "click", function() {
-            $( "#dialog" ).dialog( "open" );
-          });
-        } );
-          </script>-->
-        <script>
+    <div id="dialog" title="Shopping Cart">
+        <p id="cart-contents">
+            Your cart is currently empty.
+        </p>
+    </div>
+
+    <!-- Bootstrap core JavaScript -->
+    <script src="~/Content/Scripts/jquery.min.js"></script>
+    <script src="~/Content/Scripts/popper.min.js"></script>
+    <script src="~/Content/Scripts/bootstrap.min.js"></script>
+    <script src="~/Content/Scripts/bootstrap.bundle.min.js"></script>
+    <script src="~/Content/Scripts/cart.js"></script>
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script src="~/Content/Scripts/CartjQuery.js"></script>
+    <script src="~/Content/Scripts/docs.js"></script>
+    @* jQuery Validation *@
+    @* This was dded to enable the client side form validation that
+        is added by the Model Data Annotations *@
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.17.0/jquery.validate.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validation-unobtrusive/3.2.6/jquery.validate.unobtrusive.min.js"></script>
+    <script src="https://cdn.ckeditor.com/4.7.3/standard/ckeditor.js"></script>
+    <script type="text/javascript"
+            async defer
+            src="//assets.pinterest.com/js/pinit.js"></script>
+    <script>
+        (function (d, s, id) {
+            var js, fjs = d.getElementsByTagName(s)[0];
+            if (d.getElementById(id)) return;
+            js = d.createElement(s); js.id = id;
+            js.src = "https://connect.facebook.net/en_US/sdk.js#xfbml=1";
+            fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));</script>
+    <script>
+        $(document).ready(function () {
+            $('.body-content').css('margin-top', $('#outernav').height() + 'px');
+        });
+
+        $(window).resize(function () {
+            $('.body-content').css('margin-top', $('#outernav').height() + 'px');
+        });
+    </script>
+    @* <script src="~/Content/Scripts/editor.js"></script>*@
+    @*<script type="text/javascript">
             $(document).ready(function () {
-                $('.body-content').css('margin-top', $('#outernav').height() + 'px');
+                $(".text-area").Editor({ 'source': false,'print': false, 'splchars': false, 'togglescreen': false});
             });
-
-            $(window).resize(function () {
-                $('.body-content').css('margin-top', $('#outernav').height() + 'px');
-            });
-        </script>
-
-        @RenderSection("Scripts", false)
+        </script>*@
+    <script>
+        CKEDITOR.replace(".editor")
+    </script>
+    @RenderSection("Scripts", false)
 </body>
 </html>

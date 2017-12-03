@@ -3,8 +3,14 @@
 @{
     ViewBag.Title = "Locked Out";
 }
-
-<hgroup>
-    <h1 class="text-error">Locked out.</h1>
-    <h2 class="text-error">This account has been locked out, please try again later.</h2>
-</hgroup>
+<div class="bg-faded p-4 my-4">
+    <hr class="divider">
+    <h2 class="text-center text-lg text-uppercase my-0">
+        <strong>@ViewBag.Title</strong>
+    </h2>
+    <hr class="divider">
+    <hgroup>
+        <h1 class="text-error">Locked out.</h1>
+        <h2 class="text-error">This account has been locked out, please try again later.</h2>
+    </hgroup>
+</div>
