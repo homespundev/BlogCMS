@@ -4,6 +4,12 @@
 }
 .btn-default{
     background-color:rgb(148, 193, 223);
+    border:none;
+}
+.btn-primary{
+ background-color:lightgray;
+ border:none;
+ color:black;
 }
 .notification-counter {
     position: absolute;
@@ -167,7 +173,6 @@ body {
 
 #innernav .navbar-nav {
     margin: auto;
-    margin-left: 0;
 }
 
 
@@ -201,7 +206,6 @@ input[type="checkbox"].input-validation-error {
 }
 
 #innernav {
-    //background-color: rgba(148, 192, 223, .95);
     background-color:rgb(148, 193, 223);
     font-size: .5em;
     font-weight: 400;
