@@ -20,6 +20,8 @@ namespace HomespunClassics.DATA
             this.Comments = new HashSet<Comment>();
             this.Images = new HashSet<Image>();
             this.Tags = new HashSet<Tag>();
+            //this.Tags = new List<Tag>();
+            //this.tagIDs = new List<int>();
         }
     
         public int PostId { get; set; }
@@ -39,5 +41,18 @@ namespace HomespunClassics.DATA
         public virtual ICollection<Image> Images { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Tag> Tags { get; set; }
+        //private List<int> tagIDs;
+        //public List<int> TagIDs
+        //{
+        //    get
+        //    {
+        //        return tagIDs;
+        //    }
+        //    set
+        //    {
+
+        //        tagIDs = value;
+        //    }
+        //}
     }
 }

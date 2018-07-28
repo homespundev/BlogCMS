@@ -7,23 +7,19 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using HomespunClassics.DATA;
-using System.Data.Entity.Infrastructure;
 using HomespunClassics.UI.Models;
+using System.Data.Entity.Infrastructure;
 
 namespace HomespunClassics.UI.Controllers
 {
     public class PostsController : Controller
     {
         private HomespunClassicsDbEntities db = new HomespunClassicsDbEntities();
-        // GET: Posts
-        public ActionResult Index()
-        {
-            return RedirectToAction("Archive");
-        }
 
+        // GET: Posts
         public ActionResult Archive()
         {
-            var posts = db.Posts.Include(p => p.AspNetUser).Include(p => p.Category)/*.Where(p => p.Published == true)*/;
+            var posts = db.Posts.Include(p => p.AspNetUser).Include(p => p.Category);
             return View(posts.ToList());
         }
 
@@ -45,9 +41,8 @@ namespace HomespunClassics.UI.Controllers
         // GET: Posts/Create
         public ActionResult Create()
         {
-            ViewBag.PostAuthorID = new SelectList(db.AspNetUsers, "Id", "Email");
+            ViewBag.PostAuthorID = new SelectList(db.AspNetUsers, "Id", "FirstName");
             ViewBag.CategoryID = new SelectList(db.Categories, "CategoryID", "CategoryName");
-            //ViewBag.TagID = new SelectList(db.Tags, "TagID", "TagName");
             var post = new Post();
             post.Tags = new List<Tag>();
             PopulateAssignedTagData(post);
@@ -59,7 +54,7 @@ namespace HomespunClassics.UI.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "PostId,PostTitle,PostDescription,PostBody,PostAuthorID,CategoryID,Published,DateCreated,TagId")] Post post, string[] selectedTags)
+        public ActionResult Create([Bind(Include = "PostId,PostTitle,PostDescription,PostBody,PostAuthorID,CategoryID,Published,DateCreated")] Post post, string[] selectedTags)
         {
             if (selectedTags != null)
             {
@@ -77,16 +72,12 @@ namespace HomespunClassics.UI.Controllers
                 return RedirectToAction("Index");
             }
 
-            ViewBag.PostAuthorID = new SelectList(db.AspNetUsers, "Id", "Email", post.PostAuthorID);
+            ViewBag.PostAuthorID = new SelectList(db.AspNetUsers, "Id", "FirstName", post.PostAuthorID);
             ViewBag.CategoryID = new SelectList(db.Categories, "CategoryID", "CategoryName", post.CategoryID);
-            //ViewBag.TagID = new SelectList(db.Tags, "TagID", "TagName");
             PopulateAssignedTagData(post);
             return View(post);
         }
-        private Tag GetTag(string tagName)
-        {
-            return db.Tags.Where(x => x.TagName == tagName).FirstOrDefault() ?? new Tag() { TagName = tagName };
-        }
+
         // GET: Posts/Edit/5
         public ActionResult Edit(int? id)
         {
@@ -100,77 +91,60 @@ namespace HomespunClassics.UI.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.PostAuthorID = new SelectList(db.AspNetUsers, "Id", "Email", post.PostAuthorID);
+            ViewBag.PostAuthorID = new SelectList(db.AspNetUsers, "Id", "FirstName", post.PostAuthorID);
             ViewBag.CategoryID = new SelectList(db.Categories, "CategoryID", "CategoryName", post.CategoryID);
-            //ViewBag.TagID = new SelectList(db.Tags, "TagID", "TagName");
             PopulateAssignedTagData(post);
             return View(post);
         }
 
+        private void PopulateAssignedTagData(Post post)
+        {
+            var allTags = db.Tags;
+            var postTags = new HashSet<int>(post.Tags.Select(t => t.TagID));
+            var viewModel = new List<PostTagViewModel>();
+            foreach (var tag in allTags)
+            {
+                viewModel.Add(new PostTagViewModel
+                {
+                    TagID = tag.TagID,
+                    TagName = tag.TagName,
+                    Assigned = postTags.Contains(tag.TagID)
+                });
+            }
+            ViewBag.Tags = viewModel;
+        }
         // POST: Posts/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "PostId,PostTitle,PostDescription,PostBody,PostAuthorID,CategoryID,Published,DateCreated,TagId")] Post post, string[] selectedTags)
+        public ActionResult Edit(int? id, string[] selectedTags)
         {
-            var postToUpdate = post;
-
-            if (ModelState.IsValid)
+            if (id == null)
             {
-
-                UpdatePostTags(selectedTags, postToUpdate);
-
-                db.Entry(postToUpdate).State = EntityState.Modified;
-                db.SaveChanges();
-
-                return RedirectToAction("Index");
-
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            //db.Entry(post).State = EntityState.Modified;
-            //db.SaveChanges();
-            //return RedirectToAction("Index");
-            ViewBag.PostAuthorID = new SelectList(db.AspNetUsers, "Id", "Email", post.PostAuthorID);
-            ViewBag.CategoryID = new SelectList(db.Categories, "CategoryID", "CategoryName", post.CategoryID);
-            //ViewBag.TagID = new SelectList(db.Tags, "TagID", "TagName");
+            var postToUpdate = db.Posts.Include(p => p.Tags).Where(i => i.PostId == id).Single();
+            if (TryUpdateModel(postToUpdate, "", new string[] { "PostID", "PostName", "PostDescription", "PostBody", "PostAuthorID", "CategoryID", "Published", "DateCreated" }))
+            {
+                try
+                {
+                    UpdatePostTags(selectedTags, postToUpdate);
+                    db.Entry(postToUpdate).State = EntityState.Modified;
+                    db.SaveChanges();
+                    return RedirectToAction("Archive");
+                }
+                catch (RetryLimitExceededException)
+                {
+                    ModelState.AddModelError("", "Unable to save changes, please try again");
+                }
+            }
+            ViewBag.PostAuthorID = new SelectList(db.AspNetUsers, "Id", "FirstName", postToUpdate.PostAuthorID);
+            ViewBag.CategoryID = new SelectList(db.Categories, "CategoryID", "CategoryName", postToUpdate.CategoryID);
             PopulateAssignedTagData(postToUpdate);
             return View(postToUpdate);
         }
 
-        //public ActionResult Edit(int? id, string[] selectedTags)
-        //{
-        //    if (id == null)
-        //    {
-        //        return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-        //    }
-        //    var postToUpdate = db.Posts
-        //        .Include(p => p.Tags)
-        //        .Where(i => i.PostId == id)
-        //        .Single();
-        //    if (TryUpdateModel(postToUpdate, "",
-        //           new string[] { "PostId,PostTitle,PostDescription,PostBody,PostAuthorID,CategoryID,Published,DateCreated" }))
-        //    {
-        //        try
-        //        {
-        //            UpdatePostTags(selectedTags, postToUpdate);
-
-        //            db.Entry(postToUpdate).State = EntityState.Modified;
-        //            db.SaveChanges();
-
-        //            return RedirectToAction("Index");
-        //        }
-        //        catch (RetryLimitExceededException /* dex */)
-        //        {
-        //            //Log the error (uncomment dex variable name and add a line here to write a log.
-        //            ModelState.AddModelError("", "Unable to save changes. Try again, and if the problem persists, see your system administrator.");
-        //        }
-        //    }
-        //    ViewBag.PostAuthorID = new SelectList(db.AspNetUsers, "Id", "Email", postToUpdate.PostAuthorID);
-        //    ViewBag.CategoryID = new SelectList(db.Categories, "CategoryID", "CategoryName", postToUpdate.CategoryID);
-        //    //ViewBag.TagID = new SelectList(db.Tags, "TagID", "TagName");
-        //    PopulateAssignedTagData(postToUpdate);
-        //    return View(postToUpdate);
-        //}
         private void UpdatePostTags(string[] selectedTags, Post postToUpdate)
         {
             if (selectedTags == null)
@@ -180,8 +154,7 @@ namespace HomespunClassics.UI.Controllers
             }
 
             var selectedTagsHS = new HashSet<string>(selectedTags);
-            var postTags = new HashSet<int>
-                (postToUpdate.Tags.Select(t => t.TagID));
+            var postTags = new HashSet<int>(postToUpdate.Tags.Select(t => t.TagID));
             foreach (var tag in db.Tags)
             {
                 if (selectedTagsHS.Contains(tag.TagID.ToString()))
@@ -200,6 +173,7 @@ namespace HomespunClassics.UI.Controllers
                 }
             }
         }
+
         // GET: Posts/Delete/5
         public ActionResult Delete(int? id)
         {
@@ -233,36 +207,6 @@ namespace HomespunClassics.UI.Controllers
                 db.Dispose();
             }
             base.Dispose(disposing);
-        }
-        private void PopulateAssignedTagData(Post post)
-        {
-            var allTags = db.Tags;
-            var postTags = new HashSet<int>(post.Tags.Select(t => t.TagID));
-            var viewModelAvailable = new List<PostTagViewModel>();
-            var viewModelSelected = new List<PostTagViewModel>();
-            foreach (var tag in allTags)
-            {
-                if (postTags.Contains(tag.TagID))
-                {
-                    viewModelSelected.Add(new PostTagViewModel
-                    {
-                        TagID = tag.TagID,
-                        TagName = tag.TagName,
-                        //Assigned = postTags.Contains(tag.TagID)
-                    });
-                }
-                else
-                {
-                    viewModelAvailable.Add(new PostTagViewModel
-                    {
-                        TagID = tag.TagID,
-                        TagName = tag.TagName
-
-                    });
-                }
-            }
-            ViewBag.selOpts = new MultiSelectList(viewModelSelected, "TagID", "TagName");
-            ViewBag.availOpts = new MultiSelectList(viewModelAvailable, "TagID", "TagName");
         }
     }
 }
