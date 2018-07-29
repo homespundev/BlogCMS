@@ -1,1 +1,2 @@
 HomespunClassics.UI/Web.config
+HomespunClassics.UI/App_Start/Startup.Auth.cs
