@@ -63,30 +63,12 @@
                                 @Html.ValidationMessageFor(model => model.PostBody, "", new { @class = "text-danger" })
                             </div>
                         </div>
-                        <div class="row">
-                            <div class="col-md-2">&nbsp;</div>
-                            <div class="form-group col-md-4">
-                                <label class="control-label">Current Tags</label>
-                                @Html.ListBox("selectedOptions", (MultiSelectList)ViewBag.selOpts, new { @class = "form-control" })
-                            </div>
-                            <div class="form-group col-md-1">
-                                <div class="form-group">
-                                    <button type="button" id="btnRight" class="btn btn-warning btn-lg">
-                                        <span class="glyphicon glyphicon-arrow-right" aria-hidden="true"></span>
-                                    </button>
-                                </div>
-                                <div class="form-group">
-                                    <button type="button" id="btnLeft" class="btn btn-success btn-lg">
-                                        <span class="glyphicon glyphicon-arrow-left" aria-hidden="true"></span>
-                                    </button>
-                                    <div></div>
+                            <div class="form-group">
+                                <label class="control-label col-md-2">Tags</label>
+                                <div class="col-md-12">
+                                    @Html.ListBox("selectedTags", (MultiSelectList)ViewBag.Tags, new { @class = "select2" })
                                 </div>
                             </div>
-                            <div class="form-group col-md-4">
-                                <label class="control-label">Available Tags</label>
-                                @Html.ListBox("availOptions", (MultiSelectList)ViewBag.availOpts, new { @class = "form-control" })
-                            </div>
-                        </div>
                         <div class="form-group">
                             <div class="col-md-offset-2 col-md-10">
                                 <input type="submit" value="Create" class="btn btn-default" />

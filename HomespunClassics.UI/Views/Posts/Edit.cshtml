@@ -76,30 +76,10 @@
                         <div class="form-group">
                             <label class="control-label col-md-2">Tags</label>
                             <div class="col-md-12">
-                                <table>
-                                    <tr>
-                                        @{ 
-                                            int cnt = 0;
-                                            List<HomespunClassics.UI.Models.PostTagViewModel> tags = ViewBag.Tags;
-
-                                            foreach (var tag in tags)
-                                            {
-                                                if (cnt++ % 3 == 0)
-                                                {
-                                                    @:</tr><tr>
-                                                }
-                                                @:<td>
-                                                    <input type="checkbox" name="selectedTags" value="@tag.TagID"
-                                                           @(Html.Raw(tag.Assigned ? "checked=\"checked\"" : ""))/>
-                                                           @tag.TagName
-                                                @:</td>
-                                            }
-                                            @:</tr>
-                                        }
-                                </table>
+                                @Html.ListBox("selectedTags",(MultiSelectList)ViewBag.Tags, new { @class = "select2" })
                             </div>
                         </div>
-
+                        
                         <div class="form-group">
                             <div class="col-md-offset-2 col-md-10">
                                 <input type="submit" value="Edit" class="btn btn-default" />

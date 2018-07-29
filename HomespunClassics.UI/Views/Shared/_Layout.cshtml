@@ -20,6 +20,7 @@
     <link href="~/Content/Styles/bootstrap-social.css" rel="stylesheet" />
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
     <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <link href="~/Content/Styles/select2.css" rel="stylesheet" />
     <link href="~/Content/Styles/custom.css" rel="stylesheet" />
 
 </head>
@@ -127,7 +128,9 @@
     <script src="~/Content/Scripts/docs.js"></script>
     @*<script src="https://cdn.ckeditor.com/4.7.3/full/ckeditor.js"></script>*@
     <script src="~/ckeditor/ckeditor.js"></script>
-    <script src="~/Content/Scripts/multiselect.js"></script><script src="~/Content/Scripts/multiselect.js"></script>
+    <script src="~/ckeditor/config.js"></script>
+
+    <script src="~/Content/Scripts/select2.js"></script>
     @* jQuery Validation *@
     @* This was dded to enable the client side form validation that
         is added by the Model Data Annotations *@
@@ -158,7 +161,9 @@
     </script>
     <script>
   $( function() {
-    $( ".datepicker" ).datepicker();
+      $(".datepicker").datepicker();
+      $(".select2").select2();
+
   } );
     </script>
     @RenderSection("Scripts", false)

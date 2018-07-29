@@ -41,7 +41,7 @@ namespace HomespunClassics.UI.Controllers
         // GET: Posts/Create
         public ActionResult Create()
         {
-            ViewBag.PostAuthorID = new SelectList(db.AspNetUsers, "Id", "FirstName");
+            ViewBag.PostAuthorID = new SelectList(db.AspNetUsers, "Id", "Email");
             ViewBag.CategoryID = new SelectList(db.Categories, "CategoryID", "CategoryName");
             var post = new Post();
             post.Tags = new List<Tag>();
@@ -72,7 +72,7 @@ namespace HomespunClassics.UI.Controllers
                 return RedirectToAction("Index");
             }
 
-            ViewBag.PostAuthorID = new SelectList(db.AspNetUsers, "Id", "FirstName", post.PostAuthorID);
+            ViewBag.PostAuthorID = new SelectList(db.AspNetUsers, "Id", "Email", post.PostAuthorID);
             ViewBag.CategoryID = new SelectList(db.Categories, "CategoryID", "CategoryName", post.CategoryID);
             PopulateAssignedTagData(post);
             return View(post);
@@ -91,7 +91,7 @@ namespace HomespunClassics.UI.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.PostAuthorID = new SelectList(db.AspNetUsers, "Id", "FirstName", post.PostAuthorID);
+            ViewBag.PostAuthorID = new SelectList(db.AspNetUsers, "Id", "Email", post.PostAuthorID);
             ViewBag.CategoryID = new SelectList(db.Categories, "CategoryID", "CategoryName", post.CategoryID);
             PopulateAssignedTagData(post);
             return View(post);
@@ -111,7 +111,7 @@ namespace HomespunClassics.UI.Controllers
                     Assigned = postTags.Contains(tag.TagID)
                 });
             }
-            ViewBag.Tags = viewModel;
+            ViewBag.Tags = new MultiSelectList(allTags, "TagID", "TagName", null, postTags);
         }
         // POST: Posts/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
@@ -139,7 +139,7 @@ namespace HomespunClassics.UI.Controllers
                     ModelState.AddModelError("", "Unable to save changes, please try again");
                 }
             }
-            ViewBag.PostAuthorID = new SelectList(db.AspNetUsers, "Id", "FirstName", postToUpdate.PostAuthorID);
+            ViewBag.PostAuthorID = new SelectList(db.AspNetUsers, "Id", "Email", postToUpdate.PostAuthorID);
             ViewBag.CategoryID = new SelectList(db.Categories, "CategoryID", "CategoryName", postToUpdate.CategoryID);
             PopulateAssignedTagData(postToUpdate);
             return View(postToUpdate);
